@@ -15,7 +15,7 @@ Delete time is saved in channel topic so the deletion time will not be reseted a
 
 ## Installation
 **Requirements**
-* PHP 7.x
+* PHP 7.x, `mbstring`
 * TeamSpeak Server - v3.4.0 (build >= 1536564584) or higher.
 * Install the TS3 PHP Framework by [manually downloading](https://github.com/ronindesign/ts3phpframework/archive/master.zip) it or using Composer:
 ```
