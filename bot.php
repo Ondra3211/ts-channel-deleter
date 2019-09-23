@@ -1,5 +1,5 @@
 <?php
-$cf = require __DIR__ . "/config.php";
+require __DIR__ . "/config.php";
 require_once __DIR__ . "/{$cf["framework"]}";
 date_default_timezone_set($cf["deleter"]["timezone"]);
 TeamSpeak3::init();
