@@ -1,7 +1,12 @@
 <?php
-require __DIR__ . "/config.php";
+$cf = require __DIR__ . "/config.php";
 require_once __DIR__ . "/{$cf["framework"]}";
 date_default_timezone_set($cf["deleter"]["timezone"]);
+
+/**
+ * TeamSpeak3 Channel Deleter
+ */
+
 TeamSpeak3::init();
 
 msg("Bot Started | ChannelDeleter 1.3");
@@ -63,12 +68,13 @@ function Deleter()
     global $ts3, $cf;
     $ts3->channelListReset();
     $parent = $ts3->channelGetById($cf["deleter"]["parent_channel"]);
-    $parent_name = $ts3->channelGetById($cf["deleter"]["warning_time"]["info_channel"]["cid"]);
     $channels = $parent->subChannelList();
     $desc = "";
     foreach ($channels as $channel) {
-        //set time to description
-        if ($channel["seconds_empty"] == -1) {
+        /**
+         * Time in channel topic
+         */
+        if ($channel["seconds_empty"] === -1) {
             if (!empty($channel["channel_topic"])) {
                 $channel["channel_topic"] = "";
                 if ($cf["deleter"]["warning_time"]["suffix"]["enabled"]) {
@@ -83,13 +89,17 @@ function Deleter()
             }
         }
 
-        //working with the description time
+        /**
+         * Channel topic time
+         */
         if (!empty($channel["channel_topic"])) {
             $time = strtotime($channel["channel_topic"]);
             if ($time) {
                 $time = time() - $time;
 
-                //warning time
+                /**
+                 * Warning time
+                 */
                 if ($cf["deleter"]["warning_time"]["enabled"]) {
                     if ($time >= $cf["deleter"]["warning_time"]["time"]) {
                         $deltime = $time - $cf["deleter"]["delete_time"];
@@ -97,10 +107,14 @@ function Deleter()
                         $hours = floor(abs($deltime) / 3600);
                         $seconds = floor(abs($deltime) % 60);
 
-                        //prepare description
-                        $desc .= str_replace(["[CHANNEL]", "[HOURS]", "[MINUTES]", "[SECONDS]","[COUNT]"], ["[URL=channelid://" . $channel["cid"] . "]" . str_replace($cf["deleter"]["warning_time"]["suffix"]["suffix"], "", $channel["channel_name"]) . "[/URL]", $hours, $minutes, $seconds, count($parent->subChannelList())], $cf["deleter"]["warning_time"]["info_channel"]["description"]["description"]);
+                        /**
+                         * Prepare description
+                         */
+                        $desc .= str_replace(["[CHANNEL]", "[HOURS]", "[MINUTES]", "[SECONDS]", "[COUNT]"], ["[URL=channelid://" . $channel["cid"] . "]" . str_replace($cf["deleter"]["warning_time"]["suffix"]["suffix"], "", $channel["channel_name"]) . "[/URL]", $hours, $minutes, $seconds, count($parent->subChannelList())], $cf["deleter"]["warning_time"]["info_channel"]["description"]["description"]);
 
-                        //warning suffix
+                        /**
+                         * Warning suffix
+                         */
                         if ($cf["deleter"]["warning_time"]["suffix"]["enabled"]) {
                             if (!strpos($channel["channel_name"], $cf["deleter"]["warning_time"]["suffix"]["suffix"]) !== false) {
                                 if (mb_strlen($channel["channel_name"]) >= 38) {
@@ -113,29 +127,35 @@ function Deleter()
                     }
                 }
 
-                //delete time
+                /**
+                 * Delete time
+                 */
                 if ($time >= $cf["deleter"]["delete_time"]) {
                     $channel->delete(true);
                 }
             }
         }
     }
-
-    //set channel name and description
     $ts3->channelListReset();
-    $parent_name = $ts3->channelGetById($cf["deleter"]["warning_time"]["info_channel"]["cid"]);
-    if ($cf["deleter"]["warning_time"]["info_channel"]["channel_name"]["enabled"]) {
-        if ($parent_name["channel_name"] != str_replace("[COUNT]", count($parent->subChannelList()), $cf["deleter"]["warning_time"]["info_channel"]["channel_name"]["channel_name"])) {
-            $parent_name["channel_name"] = str_replace("[COUNT]", count($parent->subChannelList()), $cf["deleter"]["warning_time"]["info_channel"]["channel_name"]["channel_name"]);
-        }
-    }
 
-    if ($cf["deleter"]["warning_time"]["info_channel"]["description"]["enabled"]) {
-        if (empty($desc)) {
-            $desc = $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_empty"] . PHP_EOL;
+    /**
+     * Info channel, set channel name and descripiton
+     */
+    if ($cf["deleter"]["warning_time"]["info_channel"]["enabled"]) {
+        $parent_name = $ts3->channelGetById($cf["deleter"]["warning_time"]["info_channel"]["cid"]);
+        if ($cf["deleter"]["warning_time"]["info_channel"]["channel_name"]["enabled"]) {
+            if ($parent_name["channel_name"] != str_replace("[COUNT]", count($parent->subChannelList()), $cf["deleter"]["warning_time"]["info_channel"]["channel_name"]["channel_name"])) {
+                $parent_name["channel_name"] = str_replace("[COUNT]", count($parent->subChannelList()), $cf["deleter"]["warning_time"]["info_channel"]["channel_name"]["channel_name"]);
+            }
         }
-        if ($parent_name["channel_description"] != $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_prefix"] . PHP_EOL . $desc . $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_suffix"]) {
-            $parent_name["channel_description"] = $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_prefix"] . PHP_EOL . $desc . $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_suffix"];
+
+        if ($cf["deleter"]["warning_time"]["info_channel"]["description"]["enabled"]) {
+            if (empty($desc)) {
+                $desc = $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_empty"] . PHP_EOL;
+            }
+            if ($parent_name["channel_description"] != $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_prefix"] . PHP_EOL . $desc . $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_suffix"]) {
+                $parent_name["channel_description"] = $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_prefix"] . PHP_EOL . $desc . $cf["deleter"]["warning_time"]["info_channel"]["description"]["description_suffix"];
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ $cf["deleter"] = [
 			"suffix" => " ❗" // IMPORTANT!!! add space before the suffix 
 		],
 		"info_channel" => [ //avaiable variables [COUNT], [HOURS], [MINUTES], [SECONDS]
+			"enabled" => true, //eneble info channel, false to disable all feauters
 			"cid" => 685, //channel id
 			"channel_name" => [
 				"enabled" => true, //false to disable
