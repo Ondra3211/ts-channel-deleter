@@ -31,7 +31,7 @@ try
         $ts3->getAdapter()->wait();
     }
 
-} catch (Exception $e) {
+} catch (TeamSpeak3_Exception $e) {
     msg("Error " . $e->getCode() . ": " . $e->getMessage());
 }
 
