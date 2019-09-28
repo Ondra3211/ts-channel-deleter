@@ -1,4 +1,4 @@
-# TeamSpeak Query  bot - Channel Deleter [![GitHub release](https://img.shields.io/github/v/release/Ondra3211/ts-channel-deleter?include_prereleases)](https://github.com/Ondra3211/ts-channel-deleter/releases/tag/1.3) [![GitHub license](https://img.shields.io/github/license/Ondra3211/ts-channel-deleter)](https://github.com/Ondra3211/ts-channel-deleter/blob/master/LICENSE)
+# TeamSpeak Query  bot - Channel Deleter [![GitHub release](https://img.shields.io/github/v/release/Ondra3211/ts-channel-deleter?include_prereleases)](https://github.com/Ondra3211/ts-channel-deleter/releases/tag/1.4) [![GitHub license](https://img.shields.io/github/license/Ondra3211/ts-channel-deleter)](https://github.com/Ondra3211/ts-channel-deleter/blob/master/LICENSE)
 
 ## What is this?
 
@@ -15,7 +15,7 @@ Delete time is saved in channel topic so the deletion time will not be reseted a
 
 ## Installation
 **Requirements**
-* PHP 7.x, `mbstring`
+* PHP 7.x, `mbstring`, `xml`
 * TeamSpeak Server - v3.4.0 (build >= 1536564584) or higher.
 * Install the TS3 PHP Framework by [manually downloading](https://github.com/ronindesign/ts3phpframework/archive/master.zip) it or using Composer:
 ```
