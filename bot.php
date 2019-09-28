@@ -9,7 +9,7 @@ date_default_timezone_set($cf["deleter"]["timezone"]);
 
 TeamSpeak3::init();
 
-msg("Bot Started | ChannelDeleter 1.3");
+msg("Bot Started | ChannelDeleter 1.4");
 msg("PHP " . phpversion() . " | TS3Lib " . TeamSpeak3::LIB_VERSION);
 msg("Bot by Ondra3211 | https://github.com/Ondra3211" . PHP_EOL);
 $lastUpdate = time();
