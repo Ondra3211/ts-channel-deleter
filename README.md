@@ -1,4 +1,4 @@
-# TeamSpeak Query  bot - Channel Deleter [![GitHub release](https://img.shields.io/github/v/release/Ondra3211/ts-channel-deleter?include_prereleases)](https://github.com/Ondra3211/ts-channel-deleter/releases/tag/1.4) [![GitHub license](https://img.shields.io/github/license/Ondra3211/ts-channel-deleter)](https://github.com/Ondra3211/ts-channel-deleter/blob/master/LICENSE)
+# TeamSpeak Query  bot - Channel Deleter [![GitHub release](https://img.shields.io/github/v/release/Ondra3211/ts-channel-deleter?include_prereleases)](https://github.com/Ondra3211/ts-channel-deleter/releases/tag/1.5) [![GitHub license](https://img.shields.io/github/license/Ondra3211/ts-channel-deleter)](https://github.com/Ondra3211/ts-channel-deleter/blob/master/LICENSE)
 
 ## What is this?
 
