@@ -71,7 +71,7 @@ function deleter($sleep)
                         $seconds = floor(abs($deltime) % 60);
 
                         //Prepare description
-                        $desc .= str_replace(['[CHANNEL]', '[HOURS]', '[MINUTES]', '[SECONDS]', '[COUNT]'], ['[URL=channelid://' . $channel['cid'] . ']' . $channel['channel_name'] . '[/URL]', $hours, $minutes, $seconds, count($parent->subChannelList())], $cf['deleter']['warning_time']['info_channel']['description']['description']);
+                        $desc .= str_replace(['[CHANNEL]', '[HOURS]', '[MINUTES]', '[SECONDS]', '[COUNT]'], ['[URL=channelid://' . $channel['cid'] . ']' . $channel['channel_name'] . '[/URL]', $hours, $minutes, $seconds, count($parent->subChannelList())], $cf['deleter']['warning_time']['info_channel']['description']['description']) . PHP_EOL;
 
                         //Warning suffix
                         if ($cf['deleter']['warning_time']['suffix']['enabled']) {
