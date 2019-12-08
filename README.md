@@ -1,4 +1,4 @@
-# TeamSpeak Query  bot - Channel Deleter [![GitHub release](https://img.shields.io/github/v/release/Ondra3211/ts-channel-deleter?include_prereleases)](https://github.com/Ondra3211/ts-channel-deleter/releases/tag/1.6) [![GitHub license](https://img.shields.io/github/license/Ondra3211/ts-channel-deleter)](https://github.com/Ondra3211/ts-channel-deleter/blob/master/LICENSE)
+# TeamSpeak Query  bot - Channel Deleter [![GitHub license](https://img.shields.io/github/license/Ondra3211/ts-channel-deleter)](https://github.com/Ondra3211/ts-channel-deleter/blob/master/LICENSE)
 
 ## What is this?
 
@@ -28,10 +28,9 @@ composer require planetteamspeak/ts3-php-framework
 * Disable for users this permission `b_channel_modify_topic`
 ## Configuration
 <details>
-  <summary>config.php</summary>
+    <summary>config.php</summary>
   
-  ```php
-<?php
+```php
 $cf["framework"] = "libraries/TeamSpeak3/TeamSpeak3.php";
 $cf["connect"]   = [
     "username"        => "serveradmin",
@@ -71,17 +70,18 @@ $cf["deleter"] = [
         ],
     ],
 ];
-  ```
+```
   
 </details>
 
-## How to use?
-
-After installtion and configuration you can start the bot  
-**Linux:** `screen -AmdSL channel-deleter bot.php`
+## Usage
+```
+screen -AmdSL tsbot php bot.php
+```
 
 ## Screenshosts  
-<details><summary>Show Images</summary>
+<details>
+    <summary>Show Images</summary>
 
 ![](https://i.zerocz.eu/ja/werg2jL9JG.png "Info Channel Description")
 ![](https://i.zerocz.eu/ja/nKD1Go4GyH.gif "When you switch to channel that is in warning mode")
